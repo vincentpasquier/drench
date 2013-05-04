@@ -1,2 +1,2 @@
 AI Game Simulation course.
-Based on [drench](www.flashbynight.com/drench/) game.
+Based on [drench](http://www.flashbynight.com/drench/) game.
