@@ -46,7 +46,7 @@ public final class GameFrame {
   public GameFrame ( final DrenchModel model ) {
     _model = model;
     _frame = new JFrame ();
-    _cellLayout = new GridLayout ( model.height (), model.width (), 1, 1 );
+    _cellLayout = new GridLayout ( model.height (), model.width (), 0, 0 );
     _buttonLayout = new GridLayout ( 3, 2, 1, 1 );
     _cellPanel = new JPanel ( _cellLayout );
     _buttonPanel = new JPanel ( _buttonLayout );
@@ -82,6 +82,7 @@ public final class GameFrame {
         _cellPanel.add ( bt );
         _cells.get ( i ).add ( bt );
         bt.setEnabled ( false );
+        bt.setBorder ( new EmptyBorder ( 0, 0, 0, 0 ) );
       }
       ++i;
     }

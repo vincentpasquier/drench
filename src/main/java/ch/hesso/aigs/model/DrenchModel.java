@@ -38,7 +38,7 @@ public final class DrenchModel {
       return cells;
     }
     --_turns;
-    cover ( 0, 0, leftCornerPaint, newPaint, cells ); // TODO: Check better than left-up corner ?
+    cover ( 0, 0, leftCornerPaint, newPaint, cells, false );
     for ( Cell cell : cells ) {
       cell.addPaint ( newPaint );
     }
@@ -52,7 +52,7 @@ public final class DrenchModel {
    * @param newPaint
    * @param cells
    */
-  public void cover ( final int x, final int y, final Paint leftCornerPaint, final Paint newPaint, final Set<Cell> cells ) {
+  public void cover ( final int x, final int y, final Paint leftCornerPaint, final Paint newPaint, final Set<Cell> cells, final boolean stopPropagate ) {
     if ( !isInside ( x, y ) ) {
       return;
     }
@@ -61,14 +61,20 @@ public final class DrenchModel {
       return;
     }
     Paint cellPaint = affected.paint ();
-    if ( !newPaint.equals ( cellPaint ) && !leftCornerPaint.equals ( cellPaint ) ) {
+    // This stops the propagation when entering newPaint
+    boolean nextStopPropagate = cellPaint.equals ( newPaint );
+    // The newPaint has already been covered, stop propagation on the same color as leftCorner
+    if ( stopPropagate && leftCornerPaint.equals ( cellPaint ) ) {
       return;
     }
-    cells.add ( affected );
-    cover ( x + 1, y, leftCornerPaint, newPaint, cells );
-    cover ( x, y + 1, leftCornerPaint, newPaint, cells );
-    cover ( x - 1, y, leftCornerPaint, newPaint, cells );
-    cover ( x, y - 1, leftCornerPaint, newPaint, cells );
+    // In case the left corner paint is the same as the current or it's the same as the new color, should be affected and propagate
+    if ( leftCornerPaint.equals ( cellPaint ) || nextStopPropagate ) {
+      cells.add ( affected );
+      cover ( x + 1, y, leftCornerPaint, newPaint, cells, nextStopPropagate );
+      cover ( x, y + 1, leftCornerPaint, newPaint, cells, nextStopPropagate );
+      cover ( x - 1, y, leftCornerPaint, newPaint, cells, nextStopPropagate );
+      cover ( x, y - 1, leftCornerPaint, newPaint, cells, nextStopPropagate );
+    }
   }
 
   /**

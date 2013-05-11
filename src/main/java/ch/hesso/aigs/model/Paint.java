@@ -7,11 +7,11 @@ import java.awt.*;
  */
 public enum Paint {
   RED ( Color.RED ),
-  GREEN ( Color.GREEN ),
-  BLUE ( Color.BLUE ),
-  BLACK ( Color.BLACK ),
+  GREEN ( new Color ( 102, 204, 0 ) ),
+  BLUE ( new Color ( 116, 62, 244 ) ),
+  BLACK ( new Color ( 153, 153, 255 ) ),
   WHITE ( Color.WHITE ),
-  YELLOW ( Color.YELLOW );
+  YELLOW ( new Color ( 255, 204, 0 ) );
 
   //
   private final Color _color;
