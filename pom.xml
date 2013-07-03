@@ -8,12 +8,31 @@
     <artifactId>drench</artifactId>
     <version>1.0</version>
 
-    <!-- Will be used for Files -->
+    <repositories>
+        <repository>
+            <id>ow2.org</id>
+            <url>http://repository.ow2.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <!-- Guava FTW? -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>r09</version>
+            <version>14.0-rc3</version>
+        </dependency>
+        <!-- Mig Layout beauty -->
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout</artifactId>
+            <version>3.7.4</version>
+        </dependency>
+        <!-- Fuzzy Logic -->
+        <dependency>
+            <groupId>net.sourceforge.jFuzzyLogic</groupId>
+            <artifactId>jFuzzyLogic</artifactId>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
 

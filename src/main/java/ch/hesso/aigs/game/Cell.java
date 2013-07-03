@@ -1,4 +1,4 @@
-package ch.hesso.aigs.model;
+package ch.hesso.aigs.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +20,29 @@ public final class Cell {
   /**
    * @param x
    * @param y
+   */
+  public Cell ( final int x, final int y ) {
+    _x = x;
+    _y = y;
+    _paints = new ArrayList<> ( 10 );
+  }
+
+  /**
+   * @param x
+   * @param y
    * @param paint
    */
   public Cell ( final int x, final int y, final Paint paint ) {
-    _x = x;
-    _y = y;
-    _paints = new ArrayList<> ( 5 );
+    this ( x, y );
     _paints.add ( paint );
+  }
+
+  /**
+   * @param copy
+   */
+  public Cell ( final Cell copy ) {
+    this ( copy._x, copy._y );
+    _paints.addAll ( copy._paints );
   }
 
   /**
@@ -53,7 +69,7 @@ public final class Cell {
   /**
    * @param paint
    */
-  public void addPaint ( final Paint paint ) {
+  protected void addPaint ( final Paint paint ) {
     _paints.add ( paint );
   }
 
@@ -81,7 +97,7 @@ public final class Cell {
     equal &= _x == c._x;
     equal &= _y == c._y;
     equal &= _paints.size () == c._paints.size ();
-    // TODO: Check maybe paints ...
+    // TODO Check maybe paints
     return equal;
   }
 

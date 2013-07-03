@@ -1,6 +1,6 @@
 package ch.hesso.aigs;
 
-import ch.hesso.aigs.model.DrenchModel;
+import ch.hesso.aigs.game.GameController;
 import ch.hesso.aigs.ui.GameFrame;
 
 /**
@@ -13,8 +13,8 @@ public final class Drench {
    */
   public static void main ( final String[] args ) {
     // TODO: Parameters (Grid file)
-    DrenchModel model = DrenchModel.createRandomModel ( 15, 15, 30 );
-    GameFrame frame = new GameFrame ( model );
+    GameController controller = new GameController ();
+    GameFrame frame = new GameFrame ( controller );
     frame.init ();
   }
 }
